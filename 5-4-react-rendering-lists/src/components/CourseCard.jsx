@@ -28,6 +28,20 @@ export default function CourseCard({ course, index, onMutateCourse }) {
     e.preventDefault();
     // TODO: create a new task { id, title, dueDate: date, isDone: false }
     // TODO: append it to existing tasks and reset inputs
+      e.preventDefault();
+      const trimmed = title.trim();
+      if (!trimmed) return;
+
+      const newTask = {
+          id: Date.now(),
+          title: trimmed,
+          dueDate: date || null,
+          isDone: false,
+      };
+
+      onMutateCourse(index, (tasks) => [...tasks, newTask]);
+      setTitle("");
+      setDate("");
   }
 
 
