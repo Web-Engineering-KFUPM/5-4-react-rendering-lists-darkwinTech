@@ -19,6 +19,7 @@ export default function CourseCard({ course, index, onMutateCourse }) {
   // 📘 TASK 4 — PART A (Anchor): Implement delete using onMutateCourse + .filter()
   function deleteTask(id) {
     // TODO: delete the task with this id
+      onMutateCourse(index, (tasks) => tasks.filter((t) => t.id !== id));
   }
 
 
