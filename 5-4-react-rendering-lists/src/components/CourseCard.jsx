@@ -28,7 +28,6 @@ export default function CourseCard({ course, index, onMutateCourse }) {
     e.preventDefault();
     // TODO: create a new task { id, title, dueDate: date, isDone: false }
     // TODO: append it to existing tasks and reset inputs
-      e.preventDefault();
       const trimmed = title.trim();
       if (!trimmed) return;
 
@@ -43,13 +42,15 @@ export default function CourseCard({ course, index, onMutateCourse }) {
       setTitle("");
       setDate("");
   }
-
+    const hasTasks = course.tasks && course.tasks.length > 0;
+    const allDone = hasTasks && course.tasks.every((t) => t.isDone);
 
   return (
     <article className="course card">
       <header className="cardHeader">
         <h2>{course.title}</h2>
         {/* 🟩 PART A (Anchor): Show "All caught up" badge when ALL tasks are done (logical &&) */}
+          {allDone && <span className="badge success">All caught up</span>}
       </header>
 
 
@@ -59,6 +60,14 @@ export default function CourseCard({ course, index, onMutateCourse }) {
         {/* 🔎 Anchor: You’ll write your code right inside this list. */}
         <ul className="tasks">
           {/* TODO: course.tasks.map(task => <TaskItem key={task.id} task={task} onToggle={toggleTask} onDelete={deleteTask} />) */}
+              {course.tasks.map((task) => (
+                      <TaskItem
+                          key={task.id}
+                          task={task}
+                          onToggle={toggleTask}
+                          onDelete={deleteTask}
+                      />
+                  ))}
         </ul>
       </section>
 
