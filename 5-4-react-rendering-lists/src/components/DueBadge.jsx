@@ -30,5 +30,5 @@ export default function DueBadge({ dueDate }) {
 
     const extraClass = d < 0 ? "danger" : d === 0 ? "warn" : "";
 
-  return <span className="badge">Label here</span>;
+    return <span className={`badge ${extraClass}`}>{label}</span>;
 }
