@@ -10,6 +10,9 @@ export default function CourseCard({ course, index, onMutateCourse }) {
   // 📘 TASK 4 — PART A (Anchor): Implement toggle using onMutateCourse + .map()
   function toggleTask(id) {
     // TODO: toggle the task with this id
+      onMutateCourse(index, (tasks) =>
+          tasks.map((t) => (t.id === id ? { ...t, isDone: !t.isDone } : t))
+      );
   }
 
 
